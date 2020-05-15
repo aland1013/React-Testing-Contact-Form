@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import axios from 'axios';
 import App from './App';
 
 test('renders App without crashing', () => {
@@ -42,7 +43,7 @@ test('accepts a message', () => {
 test('submits data when button is clicked', async () => {
   const { getByPlaceholderText, getByTestId } = render(<App />);
 
-  userEvent.type(getByPlaceholderText('Edd'), 'Ad');
+  userEvent.type(getByPlaceholderText('Edd'), 'Adam');
   userEvent.type(getByPlaceholderText('Burke'), 'Land');
   userEvent.type(
     getByPlaceholderText('bluebill1049@hotmail.com'),
@@ -54,3 +55,5 @@ test('submits data when button is clicked', async () => {
 
   const data = await waitFor(() => getByTestId('data'));
 });
+
+test('sends a POST request', async () => {});
